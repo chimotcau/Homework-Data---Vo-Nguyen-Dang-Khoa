@@ -1,35 +1,35 @@
 #include <iostream>
-bool BinarySearch(const int* begin, const int* end, int target) {
-  while (begin < end) {
-    const int* mid = begin + (end - begin) / 2;
+bool BinarySearch(const int* start, const int* end, int target) {
+  while (start < end) {
+    const int* mid = start + (end - start) / 2;
     if (*mid == target) {
       return true;
     }
     if (*mid > target) {
       end = mid;
     } else {
-      begin = mid + 1;
+      start = mid + 1;
     }
   }
   return false;
 }
 int main() {
-  int N, Q;
-  std::cin >> N;
-  int* arr = new int[N];
-  for (int i = 0; i < N; i++) {
-    std::cin >> arr[i];
+  int numElements, numQueries;
+  std::cin >> numElements;
+  int* array = new int[numElements];
+  for (int index = 0; index < numElements; ++index) {
+    std::cin >> array[index];
   }
-  std::cin >> Q;
-  for (int k = 1; k <= Q; k++) {
-    int i, j, t;
-    std::cin >> i >> j >> t;
-    if (BinarySearch(arr + i, arr + j, t)) {
+  std::cin >> numQueries;
+  for (int query = 0; query < numQueries; ++query) {
+    int startIndex, endIndex, target;
+    std::cin >> startIndex >> endIndex >> target;
+    if (BinarySearch(array + startIndex, array + endIndex, target)) {
       std::cout << "Yes" << '\n';
     } else {
       std::cout << "No" << '\n';
     }
   }
-  delete[] arr;
+  delete[] array;
   return 0;
 }
